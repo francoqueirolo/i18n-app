@@ -1,0 +1,7 @@
+<p>Language Selector</p>
+
+<select class="flex">
+  @for(item of languages(); track item.code) {
+  <option value="{{item.code}}">{{item.flag}}</option>
+  }
+</select>
