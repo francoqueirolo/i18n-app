@@ -1,7 +1,11 @@
-<p>Language Selector</p>
+<p class="mt-10" translate="changeLanguage"></p>
 
-<select class="flex">
-  @for(item of languages(); track item.code) {
-  <option value="{{item.code}}">{{item.flag}}</option>
+<select
+  class="px-3 py-2 border rounded-md bg-white dark:bg-gray-800"
+  (change)="changeLanguage($any($event.target).value)"
+  [value]="currentLang()"
+>
+  @for(item of languages; track item.code) {
+  <option value="{{item.code}}">{{item.flag}} {{item.name}}</option>
   }
 </select>

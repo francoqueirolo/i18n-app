@@ -1,17 +1,20 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { LanguageService } from '../../service/Language';
+import { TranslateDirective } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-language-selector',
   standalone: true,
-  imports: [],
+  imports: [TranslateDirective],
   templateUrl: './language-selector.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSelector {
-  languages = signal([
-    { code: 'en', flag: '🇺🇸' },
-    { code: 'es', flag: '🇪🇸' },
-    { code: 'fr', flag: '🇫🇷' },
-    { code: 'it', flag: '🇮🇹' },
-  ]);
+  languageService = inject(LanguageService);
+  currentLang = this.languageService.currentLang;
+  languages = this.languageService.languages;
+
+  changeLanguage(lang: string) {
+    this.languageService.changeLanguage(lang);
+  }
 }
