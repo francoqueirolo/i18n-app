@@ -25,9 +25,8 @@ export class LanguageService {
   }
 
   changeLanguage(lang: string) {
+    this.translate.use(lang);
+    this.currentLang.set(lang);
     this.cookie.set('lang', lang);
-    this.translate.use(lang).subscribe(() => {
-      this.currentLang.set(lang);
-    });
   }
 }

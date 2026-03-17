@@ -2,10 +2,10 @@
 
 <select
   class="px-3 py-2 border rounded-md bg-white dark:bg-gray-800"
-  (change)="changeLanguage($any($event.target).value)"
-  [value]="currentLang()"
+  [ngModel]="currentLang()"
+  (ngModelChange)="changeLanguage($event)"
 >
   @for(item of languages; track item.code) {
-  <option value="{{item.code}}">{{item.flag}} {{item.name}}</option>
+    <option [value]="item.code">{{item.flag}} {{item.name}}</option>
   }
 </select>
